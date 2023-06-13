@@ -1,2 +1,2 @@
 # docker-repos
-this's repos for docker and documentation
+this's repos for docker fundamental course and documentation
