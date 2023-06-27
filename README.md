@@ -1,2 +1,2 @@
 # docker-haproxy
-this's repos for docker fundamental course and documentation
+this's repos is for configuration haproxy on docker
