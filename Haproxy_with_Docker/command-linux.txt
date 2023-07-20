@@ -1,0 +1,33 @@
+## create directory ##
+sudo mkdir challenge1
+cd challenge1
+
+## run docker web1 & web2 ##
+docker run -d --name web1 -p 8080:80 registry.adinusa.id/btacademy/nginx:latest
+docker run -d --name web2 -p 8081:80 registry.adinusa.id/btacademy/httpd:latest
+docker container ls -a
+
+## pointer all domain to ip host ##
+sudo nano /etc/hosts (input the all domain pointer to ip host)
+
+## Run docker ##
+docker run -it -d --name username-haproxy -v /etc/haproxy registry.adinusa.id/btacademy/haproxy-alpine:2.4
+
+## copy file haproxy.cfg to host ##
+sudo docker cp username-haproxy:/etc/haproxy/haproxy.cfg /home/$user/challenge1
+
+## edit haproxy file ##
+sudo nano haproxy.cfg (follow the parameter like my-file)
+
+## stop container ##
+docker container stop username-haproxy
+
+## copy file haproxy.cfg have edit to container ##
+sudo docker cp haproxy.cfg username-haproxy:/etc/haproxy
+
+## start container after copy ##
+docker container start username-haproxy
+
+## Testing ##
+curl web1.username.id
+curl web2.username.id
